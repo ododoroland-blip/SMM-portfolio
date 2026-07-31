@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ododo Roland Otega — Social Media Manager</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#FAF8F3;
+    --ink:#181715;
+    --ink-soft:#5B584F;
+    --line:#DEDACE;
+    --retail:#1F6F64;
+    --retail-tint:#E4EFEC;
+    --agency:#C43D6B;
+    --agency-tint:#F7E6EC;
+    --marker:#F4C64C;
+    --card:#FFFFFF;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Inter',sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,.display{
+    font-family:'Space Grotesk',sans-serif;
+    letter-spacing:-0.01em;
+    margin:0;
+  }
+  .mono{font-family:'IBM Plex Mono',monospace;}
+  a{color:inherit;}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 32px;}
+
+  /* ---------- NAV ---------- */
+  nav{
+    position:sticky;top:0;z-index:50;
+    background:rgba(250,248,243,0.88);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--line);
+  }
+  nav .wrap{display:flex;justify-content:space-between;align-items:center;height:64px;}
+  .nav-name{font-weight:600;font-size:15px;}
+  .nav-links{display:flex;gap:28px;font-size:14px;color:var(--ink-soft);}
+  .nav-links a{text-decoration:none;transition:color .15s;}
+  .nav-links a:hover{color:var(--ink);}
+
+  /* ---------- HERO ---------- */
+  header.hero{
+    padding:88px 0 64px;
+    position:relative;
+    overflow:hidden;
+    border-bottom:1px solid var(--line);
+  }
+  .cal-bg{
+    position:absolute;inset:0;
+    display:grid;grid-template-columns:repeat(7,1fr);
+    opacity:0.5;
+    pointer-events:none;
+  }
+  .cal-bg div{border-right:1px solid var(--line);}
+  .cal-bg div:last-child{border-right:none;}
+  .eyebrow{
+    display:inline-flex;align-items:center;gap:8px;
+    font-family:'IBM Plex Mono',monospace;
+    font-size:12.5px;letter-spacing:.06em;
+    color:var(--ink-soft);
+    margin-bottom:18px;
+  }
+  .eyebrow .dot{width:7px;height:7px;border-radius:50%;background:var(--marker);}
+  h1.display{
+    font-size:clamp(38px,6vw,64px);
+    font-weight:700;line-height:1.04;
+    max-width:820px;
+    position:relative;
+  }
+  h1.display .mark{
+    background:linear-gradient(to top, var(--marker) 0 38%, transparent 38%);
+    padding:0 4px;
+  }
+  .hero-sub{
+    margin-top:22px;font-size:17px;line-height:1.6;
+    color:var(--ink-soft);max-width:560px;
+  }
+  .hero-meta{
+    margin-top:36px;display:flex;flex-wrap:wrap;gap:10px 22px;
+    font-size:14px;color:var(--ink-soft);
+  }
+  .hero-meta span{display:flex;align-items:center;gap:8px;}
+  .btn{
+    display:inline-block;margin-top:32px;
+    background:var(--ink);color:var(--paper);
+    padding:12px 22px;border-radius:2px;
+    font-size:14px;font-weight:500;text-decoration:none;
+    transition:transform .15s ease;
+  }
+  .btn:hover{transform:translateY(-2px);}
+
+  /* ---------- SECTION generic ---------- */
+  section{padding:76px 0;border-bottom:1px solid var(--line);}
+  .section-head{margin-bottom:44px;max-width:640px;}
+  .section-head .eyebrow{margin-bottom:12px;}
+  .section-head h2{font-size:clamp(26px,3.4vw,36px);font-weight:600;line-height:1.15;}
+  .section-head p{color:var(--ink-soft);margin-top:14px;font-size:15.5px;line-height:1.65;}
+
+  /* ---------- ABOUT ---------- */
+  .about-grid{display:grid;grid-template-columns:1fr;gap:28px;}
+  .about-text{font-size:16.5px;line-height:1.75;color:var(--ink);max-width:680px;}
+  .about-text strong{font-weight:600;}
+
+  /* ---------- CALENDAR STRIP (signature element) ---------- */
+  .cal-strip{
+    display:grid;grid-template-columns:repeat(7,1fr);
+    border:1px solid var(--line);
+    background:var(--card);
+    margin:28px 0 8px;
+    border-radius:4px;overflow:hidden;
+  }
+  .cal-cell{
+    border-right:1px solid var(--line);
+    padding:14px 12px;min-height:118px;
+    position:relative;
+  }
+  .cal-cell:last-child{border-right:none;}
+  .cal-day{font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:var(--ink-soft);}
+  .cal-tag{
+    margin-top:10px;font-size:12px;line-height:1.4;
+    padding:6px 8px;border-radius:3px;font-weight:500;
+  }
+  .cal-tag.retail{background:var(--retail-tint);color:var(--retail);}
+  .cal-tag.agency{background:var(--agency-tint);color:var(--agency);}
+  .cal-caption{font-size:11px;color:var(--ink-soft);margin-top:8px;line-height:1.4;}
+  .cal-note{font-size:12.5px;color:var(--ink-soft);font-style:italic;margin-top:2px;}
+
+  /* ---------- CASE STUDY ---------- */
+  .case{padding:76px 0;border-bottom:1px solid var(--line);}
+  .case-head{display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:16px;margin-bottom:8px;}
+  .brand-tag{
+    display:inline-block;font-family:'IBM Plex Mono',monospace;
+    font-size:12px;letter-spacing:.05em;padding:5px 10px;border-radius:3px;
+  }
+  .brand-tag.retail{background:var(--retail);color:#fff;}
+  .brand-tag.agency{background:var(--agency);color:#fff;}
+  .case h3{font-size:clamp(24px,3vw,32px);font-weight:600;margin-top:14px;max-width:640px;}
+  .case-stats{display:flex;gap:36px;margin:26px 0 10px;flex-wrap:wrap;}
+  .stat-num{font-family:'Space Grotesk',sans-serif;font-size:30px;font-weight:700;}
+  .stat-label{font-size:12.5px;color:var(--ink-soft);margin-top:2px;}
+  .case p.body{color:var(--ink-soft);font-size:15.5px;line-height:1.7;max-width:680px;margin-top:18px;}
+
+  .caption-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin-top:28px;}
+  .caption-card{
+    background:var(--card);border:1px solid var(--line);border-radius:4px;
+    padding:18px 18px 16px;
+  }
+  .caption-card .plat{
+    font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.05em;
+    color:var(--ink-soft);margin-bottom:10px;display:block;
+  }
+  .caption-card p{font-size:14px;line-height:1.6;margin:0;}
+
+  .shot-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;margin-top:28px;}
+  .shot-placeholder{
+    aspect-ratio:4/5;border:1.5px dashed var(--line);border-radius:4px;
+    display:flex;align-items:center;justify-content:center;flex-direction:column;
+    color:var(--ink-soft);font-size:12.5px;text-align:center;padding:16px;gap:6px;
+    background:repeating-linear-gradient(135deg, #fff, #fff 10px, #F3F0E9 10px, #F3F0E9 20px);
+  }
+  .shot-placeholder .plus{font-size:22px;font-family:'Space Grotesk';}
+
+  .shot-fig{margin:0;display:flex;flex-direction:column;}
+  .shot-img{
+    aspect-ratio:4/5;border:1px solid var(--line);border-radius:4px;
+    overflow:hidden;background:#fff;
+  }
+  .shot-img img{width:100%;height:100%;object-fit:cover;object-position:top;display:block;}
+  .shot-cap{font-size:12px;color:var(--ink-soft);margin-top:8px;line-height:1.4;}
+
+  /* ---------- SKILLS ---------- */
+  .skills-wrap{display:flex;flex-wrap:wrap;gap:10px;margin-top:10px;}
+  .skill-pill{
+    border:1px solid var(--line);background:var(--card);
+    padding:9px 16px;border-radius:20px;font-size:13.5px;
+  }
+  .tools-row{display:flex;flex-wrap:wrap;gap:34px;margin-top:44px;}
+  .tool-item{display:flex;flex-direction:column;gap:4px;}
+  .tool-item .tool-name{font-weight:600;font-size:15px;}
+  .tool-item .tool-desc{font-size:12.5px;color:var(--ink-soft);}
+
+  /* ---------- CONTACT / FOOTER ---------- */
+  footer{padding:80px 0 56px;}
+  footer h2{font-size:clamp(28px,4vw,42px);font-weight:700;max-width:620px;line-height:1.15;}
+  .contact-links{display:flex;flex-wrap:wrap;gap:14px 30px;margin-top:32px;}
+  .contact-links a{
+    text-decoration:none;font-size:15px;padding-bottom:3px;
+    border-bottom:1.5px solid var(--ink);
+  }
+  .foot-note{margin-top:64px;font-size:12.5px;color:var(--ink-soft);}
+
+  @media (max-width:640px){
+    .cal-bg{display:none;}
+    .cal-strip{grid-template-columns:repeat(2,1fr);}
+    .cal-cell:nth-child(2n){border-right:none;}
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *{transition:none !important;}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <div class="nav-name">ODODO ROLAND OTEGA</div>
+    <div class="nav-links">
+      <a href="#work">Work</a>
+      <a href="#skills">Skills</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="cal-bg"><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+  <div class="wrap">
+    <div class="eyebrow"><span class="dot"></span>SOCIAL MEDIA MANAGER · LAGOS, NIGERIA</div>
+    <h1 class="display">I plan the month before it <span class="mark">happens.</span></h1>
+    <p class="hero-sub">I build content calendars, write platform-specific copy, and design the visuals that go with it — across brands that don't sound the same and shouldn't. Currently running social for Dazzling Group.</p>
+    <div class="hero-meta">
+      <span>📍 Lagos, Nigeria</span>
+      <span>✉️ ododoroland@gmail.com</span>
+      <span>📞 +234 705 519 7059</span>
+    </div>
+    <a href="#work" class="btn">See the work ↓</a>
+  </div>
+</header>
+
+<section id="about">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow"><span class="dot"></span>ABOUT</div>
+      <h2>One person, two brand voices, one calendar.</h2>
+    </div>
+    <div class="about-grid">
+      <p class="about-text">
+        I'm a graphic designer and social media content lead based in Lagos, currently with <strong>Dazzling Group</strong>, where I run content for two business lines under one roof: an electronics retail brand and a talent &amp; event agency. That means building separate 30-day content calendars, writing captions that shift tone by platform and audience, and designing every piece of creative that goes out — in Figma, Photoshop, Illustrator, and Canva.
+      </p>
+      <p class="about-text">
+        The two case studies below show how that plays out in practice: one calendar built around a product launch, the other around a talent roster. Same planning process, two completely different voices.
+      </p>
+    </div>
+  </div>
+</section>
+
+<section id="work" class="case" style="padding-top:76px;">
+  <div class="wrap">
+    <div class="case-head">
+      <div>
+        <span class="brand-tag retail">BEDAZZLED MART · ELECTRONICS RETAIL</span>
+        <h3>A 30-day calendar built around one product launch.</h3>
+      </div>
+    </div>
+    <p class="body">
+      Bedazzled Mart needed its full electronics catalogue launched with a plan, not a string of one-off posts. I mapped a 30-day content calendar around the online store going live — teaser, spec-focused, lifestyle, and offer posts in sequence — then wrote platform-specific captions per product and prepared e-commerce-ready listings across 231 SKUs (Hisense and LG) so the same launch could run on social and on the store simultaneously.
+    </p>
+    <div class="case-stats">
+      <div><div class="stat-num">30</div><div class="stat-label">day content calendar</div></div>
+      <div><div class="stat-num">231</div><div class="stat-label">product listings prepped</div></div>
+      <div><div class="stat-num">3</div><div class="stat-label">platforms written for</div></div>
+    </div>
+
+    <div class="cal-strip">
+      <div class="cal-cell"><div class="cal-day">MON</div><div class="cal-tag retail">Teaser</div><div class="cal-caption">"Something's landing this week..."</div></div>
+      <div class="cal-cell"><div class="cal-day">TUE</div><div class="cal-note">— off day —</div></div>
+      <div class="cal-cell"><div class="cal-day">WED</div><div class="cal-tag retail">Spec highlight</div><div class="cal-caption">Feature carousel, IG + LinkedIn</div></div>
+      <div class="cal-cell"><div class="cal-day">THU</div><div class="cal-note">— off day —</div></div>
+      <div class="cal-cell"><div class="cal-day">FRI</div><div class="cal-tag retail">Lifestyle</div><div class="cal-caption">In-use shot, X + IG</div></div>
+      <div class="cal-cell"><div class="cal-day">SAT</div><div class="cal-tag retail">Launch offer</div><div class="cal-caption">Price + availability post</div></div>
+      <div class="cal-cell"><div class="cal-day">SUN</div><div class="cal-note">— off day —</div></div>
+    </div>
+    <p class="cal-note" style="margin-top:6px;">↑ Sample week from the Bedazzled Mart launch calendar — swap in your real calendar screenshot below.</p>
+
+    <div class="caption-grid">
+      <div class="caption-card">
+        <span class="plat">INSTAGRAM</span>
+        <p>Bring the stadium directly into your living room! Upgrading your home entertainment just got better with the Hisense 65" UHD 4K Smart TV — 4K AI upscaling and Dolby Audio for every match night. 🏟️📺</p>
+      </div>
+      <div class="caption-card">
+        <span class="plat">X (TWITTER)</span>
+        <p>Upgrade your viewing experience with the Hisense 65" UHD 4K Smart TV. Crystal-clear 4K AI upscaling & immersive Dolby Audio, perfect for family movie nights & live match days.</p>
+      </div>
+      <div class="caption-card">
+        <span class="plat">LINKEDIN</span>
+        <p>Enhance your home entertainment or office presentation space with the Hisense 65" UHD 4K Smart TV — advanced 4K AI upscaling and Dolby Audio for premium visual clarity.</p>
+      </div>
+    </div>
+    <p class="cal-note" style="margin-top:10px;">↑ Real captions from the per-product caption tracker below — written per platform, per product.</p>
+
+    <div class="shot-row">
+      <figure class="shot-fig">
+        <div class="shot-img"><img src="images/bm-caption-calendar.png" alt="Product caption tracker for Bedazzled Mart, with Instagram, X, and LinkedIn captions written per product"></div>
+        <figcaption class="shot-cap">Caption tracker — Instagram, X, and LinkedIn copy written per product, Hisense TV line.</figcaption>
+      </figure>
+      <figure class="shot-fig">
+        <div class="shot-img"><img src="images/bm-launch-post.jpg" alt="Bedazzled Mart website official launch announcement post"></div>
+        <figcaption class="shot-cap">Launch announcement post for the Bedazzled Mart website going live.</figcaption>
+      </figure>
+      <figure class="shot-fig">
+        <div class="shot-img"><img src="images/hisense-32-product-post.jpg" alt="Hisense 32 inch Smart Full HD TV product post"></div>
+        <figcaption class="shot-cap">Product post — Hisense 32" Smart Full HD TV, spec highlight format.</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<section class="case">
+  <div class="wrap">
+    <div class="case-head">
+      <div>
+        <span class="brand-tag agency">DAZZLING MODELS · TALENT &amp; EVENT AGENCY</span>
+        <h3>Four posts a week, three service lines, one consistent voice.</h3>
+      </div>
+    </div>
+    <p class="body">
+      Dazzling Models books talent across modeling, event staffing, and brand ambassador work — three different services that all needed to show up in one Instagram feed without feeling scattered. I built a 30-day plan running four posts a week, rotating across the three service lines, and introduced an anime-themed model card series as a recurring pillar to give the page a visual signature people would recognize on sight.
+    </p>
+    <div class="case-stats">
+      <div><div class="stat-num">4×</div><div class="stat-label">posts per week</div></div>
+      <div><div class="stat-num">3</div><div class="stat-label">service lines covered</div></div>
+      <div><div class="stat-num">1</div><div class="stat-label">recurring content pillar (anime model cards)</div></div>
+    </div>
+
+    <div class="cal-strip">
+      <div class="cal-cell"><div class="cal-day">MON</div><div class="cal-tag agency">Model spotlight</div><div class="cal-caption">Portfolio-style feature post</div></div>
+      <div class="cal-cell"><div class="cal-day">TUE</div><div class="cal-note">— off day —</div></div>
+      <div class="cal-cell"><div class="cal-day">WED</div><div class="cal-tag agency">Anime model card</div><div class="cal-caption">Signature content pillar</div></div>
+      <div class="cal-cell"><div class="cal-day">THU</div><div class="cal-note">— off day —</div></div>
+      <div class="cal-cell"><div class="cal-day">FRI</div><div class="cal-tag agency">Event staffing</div><div class="cal-caption">Behind-the-scenes / recap</div></div>
+      <div class="cal-cell"><div class="cal-day">SAT</div><div class="cal-tag agency">Brand ambassador</div><div class="cal-caption">Partner shoutout post</div></div>
+      <div class="cal-cell"><div class="cal-day">SUN</div><div class="cal-note">— off day —</div></div>
+    </div>
+    <p class="cal-note" style="margin-top:6px;">↑ Sample week from the 4-posts/week plan — swap in your real calendar screenshot below.</p>
+
+    <div class="shot-row">
+      <figure class="shot-fig">
+        <div class="shot-img"><img src="images/dm-content-plan.png" alt="Dazzling Models 30-day content plan document with pillars and captions"></div>
+        <figcaption class="shot-cap">30-day content plan — pillar, content idea, and caption laid out per post.</figcaption>
+      </figure>
+      <figure class="shot-fig">
+        <div class="shot-img"><img src="images/dm-anime-models.png" alt="Anime characters cast as Dazzling Models talent across fashion, commercial, and fitness categories"></div>
+        <figcaption class="shot-cap">Anime model card concept — the roster sorted into real booking categories.</figcaption>
+      </figure>
+      <figure class="shot-fig">
+        <div class="shot-img"><img src="images/dm-event-staffing.png" alt="Corporate event staffing package post for Dazzling Models"></div>
+        <figcaption class="shot-cap">Event staffing package post — one of three tiered packages offered.</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow"><span class="dot"></span>SKILLS</div>
+      <h2>What I actually do, week to week.</h2>
+    </div>
+    <div class="skills-wrap">
+      <div class="skill-pill">30-day content calendar planning</div>
+      <div class="skill-pill">Platform-specific copywriting (IG / X / LinkedIn)</div>
+      <div class="skill-pill">Multi-brand voice &amp; tone</div>
+      <div class="skill-pill">Campaign &amp; launch creative</div>
+      <div class="skill-pill">E-commerce / social commerce content prep</div>
+      <div class="skill-pill">Brand identity design</div>
+    </div>
+
+    <div class="tools-row">
+      <div class="tool-item"><span class="tool-name">Figma</span><span class="tool-desc">Layouts, templates, handoff</span></div>
+      <div class="tool-item"><span class="tool-name">Adobe Photoshop</span><span class="tool-desc">Photo editing, post creative</span></div>
+      <div class="tool-item"><span class="tool-name">Adobe Illustrator</span><span class="tool-desc">Brand assets, vector work</span></div>
+      <div class="tool-item"><span class="tool-name">Canva</span><span class="tool-desc">Fast-turnaround content</span></div>
+    </div>
+  </div>
+</section>
+
+<footer id="contact">
+  <div class="wrap">
+    <div class="eyebrow"><span class="dot"></span>GET IN TOUCH</div>
+    <h2>Have a calendar that needs building?</h2>
+    <div class="contact-links">
+      <a href="mailto:ododoroland@gmail.com">ododoroland@gmail.com</a>
+      <a href="tel:+2347055197059">+234 705 519 7059</a>
+    </div>
+    <p class="foot-note">Ododo Roland Otega — Social Media Manager, based in Lagos, Nigeria.</p>
+  </div>
+</footer>
+
+</body>
+</html>
